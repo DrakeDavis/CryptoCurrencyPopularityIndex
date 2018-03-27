@@ -1,1 +1,1 @@
-web: gunicorn CryptoCurrencyPopularityIndex:app --log-file=-
+web: gunicorn CPIWebApp:app --log-file=-
