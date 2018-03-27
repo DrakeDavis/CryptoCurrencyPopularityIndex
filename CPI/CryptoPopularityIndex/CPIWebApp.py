@@ -8,7 +8,6 @@ app.cache = Cache(app)
 
 #timeout is 10800 seconds, or 3 houea
 @app.route('/')
-@app.cache.cached(timeout=10800)
 def index_page():
 
     # asynchronously kick off the retrieval (takes forever or google bans ip)
@@ -37,6 +36,7 @@ def getLatestTrends():
     else:
         # else, just return and use the old data
         logging.info("Not refreshing data, as its only been ", timeDifference, "seconds between calls.")
+        print("Not refreshing data, as its only been ", timeDifference, "seconds between calls.")
         return
 
 if __name__ == '__main__':

@@ -19,8 +19,6 @@ def retrieveCurrencies():
         currency.price = ('$' + price)
         currencyList.append(currency)
 
-    currencyList = currencyList[-5:]
-
     for currency in currencyList:
         currency = GoogleTrendsRetriever.findTrend(currency)
         print (currencyList.index(currency), '% complete')
