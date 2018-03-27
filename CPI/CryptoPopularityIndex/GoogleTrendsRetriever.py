@@ -1,11 +1,13 @@
 from pytrends.request import TrendReq
-
+import datetime
 pytrends = TrendReq(hl='en-US', tz=360)
 
 
+# This function calls out to Google Trends and gets the popularity metrics
+# for the currency that is passed as an argument.
 def findTrend(argCurrency):
 
-    # Keyword to search for is the coin name + 'crypto' as some names are ambigous
+    # Keyword to search for
     keyword = argCurrency.name
 
     # New variable that is different from the argument variable (because why not)
@@ -18,6 +20,7 @@ def findTrend(argCurrency):
     # Make the 'interest over time' call
     dataFrame = pytrends.interest_over_time()
 
+    # Try to get a list of daily popularity over the last month
     try:
         monthlyList = dataFrame.ix[:, 0].tolist()
     except:
@@ -37,18 +40,14 @@ def findTrend(argCurrency):
     currency.weeklyAverage = ("%.2f" % weekly_Average)
     currency.threeDayAverage = ("%.2f" % threeDay_Average)
 
-    #print("30d average: ", monthly_Average)
-    #print("7d average: ", weekly_Average)
-    #print("3d average: ", threeDay_Average)
-
-    # Sometimes google trends returns 0 erroneously. We definitely don't want to divide by 0
+    # Sometimes google trends returns 0 if something goes wrong. We definitely don't want to divide by 0
     if (weekly_Average != 0):
         increaseBetween3dAnd7d = threeDay_Average / weekly_Average
     else:
         increaseBetween3dAnd7d = 0
 
+    # Populate the currency object with relevant data
     currency.percentChange = float("%.2f" % (increaseBetween3dAnd7d *100))
-
-    #print('Percent change from 3d as compared to 7d:', increaseBetween3dAnd7d * 100, "%")
+    currency.lastUpdated = str(datetime.datetime.now())
 
     return currency

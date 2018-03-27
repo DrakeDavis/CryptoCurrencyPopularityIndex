@@ -30,8 +30,8 @@ def getLatestTrends():
     # (I did this as to not spam Google with tons of requests)
     timeDifference = currentTime - lastModifiedTime;
 
-    # If its been at least 3600 seconds (one hour) go ahead and refresh data
-    if (timeDifference > 3600):
+    # If its been at least 1800 seconds (0.5 hours) go ahead and refresh data
+    if (timeDifference > 1800):
         CoinmarketcapApiRetriever.retrieveCurrencies()
     else:
         # else, just return and use the old data
