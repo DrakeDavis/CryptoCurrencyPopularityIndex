@@ -1,7 +1,6 @@
 from flask import Flask, Response
 from flask_cache import Cache
-
-from CryptoPopularityIndex.DataRetrievers import CoinmarketcapApiRetriever
+import CoinmarketcapApiRetriever
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'

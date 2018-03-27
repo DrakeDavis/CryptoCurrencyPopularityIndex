@@ -1,11 +1,6 @@
-import json
-import operator
+import json, requests, operator
 from time import sleep
-
-import requests
-
-from CryptoPopularityIndex.DataRetrievers import GoogleTrendsRetriever
-from CryptoPopularityIndex.Model import CryptoCurrencyModel
+import GoogleTrendsRetriever, CryptoCurrencyModel
 
 
 def retrieveCurrencies():
