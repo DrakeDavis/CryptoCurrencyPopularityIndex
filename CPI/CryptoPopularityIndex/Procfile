@@ -1,1 +1,1 @@
-web: python CPIWebApp.py
+web: gunicorn CryptoPopularityIndex:app
