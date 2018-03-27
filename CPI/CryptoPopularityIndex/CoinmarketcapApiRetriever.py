@@ -19,7 +19,7 @@ def retrieveCurrencies():
         currency.price = ('$' + price)
         currencyList.append(currency)
 
-    #currencyList = currencyList[-5:]
+    currencyList = currencyList[-5:]
 
     for currency in currencyList:
         currency = GoogleTrendsRetriever.findTrend(currency)
@@ -39,7 +39,7 @@ def retrieveCurrencies():
 
     print(json_string)
 
-    with open('logs/data.json', 'a') as outfile:
+    with open('latestData.json', 'w') as outfile:
         outfile.write(json_string)
 
     return json_string
