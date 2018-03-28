@@ -1,6 +1,7 @@
-import json, requests, operator
+import json, requests, operator, boto3
 from time import sleep
 import GoogleTrendsRetriever, CryptoCurrencyModel
+
 
 # This function calls out to the API of Coinmarketcap.com and gets the top 100 coins as
 # determined by their respective market caps
@@ -34,16 +35,4 @@ def retrieveCurrencies():
     # Sort the list by the "percentChange" attribute (the recent change in it's popularity)
     currencyList.sort(key=operator.attrgetter('percentChange'), reverse=True)
 
-    # Creating JSON based on the list of currencies
-    for currency in currencyList:
-        def obj_dict(obj):
-            return obj.__dict__
-
-        json_string = json.dumps(currencyList, default=obj_dict)
-
-    print(json_string)
-
-    with open('latestData.json', 'w') as outfile:
-        outfile.write(json_string)
-
-    return json_string
+    return currencyList
