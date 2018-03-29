@@ -1,9 +1,0 @@
-
-*.iml
-CPI/.idea/modules.xml
-CPI/.idea/workspace.xml
-CPI/CryptoPopularityIndex/.idea/misc.xml
-CPI/CryptoPopularityIndex/.idea/modules.xml
-CPI/CryptoPopularityIndex/.idea/workspace.xml
-*.pyc
-CPI/CryptoPopularityIndexOLD.7z
