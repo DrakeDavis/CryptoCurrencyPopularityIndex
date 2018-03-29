@@ -29,6 +29,7 @@ def findTrend(argCurrency):
     # Creating subsets of data for week and 3day
     weeklyList = (monthlyList[-7:])
     threeDatList = (weeklyList[-3:])
+    lastDay = (weeklyList[-1:])
 
     # Getting the averages of the above lists
     monthly_Average = float(sum(monthlyList)) / len(monthlyList)
@@ -36,9 +37,10 @@ def findTrend(argCurrency):
     threeDay_Average = float(sum(threeDatList)) / len(threeDatList)
 
     # Populating that data into the model object. The %.2 should truncate to 2 decimal places
-    currency.monthlyAverage = ("%.2f" % monthly_Average)
-    currency.weeklyAverage = ("%.2f" % weekly_Average)
-    currency.threeDayAverage = ("%.2f" % threeDay_Average)
+    currency.monthlyAveragePopularity = ("%.2f" % monthly_Average)
+    currency.weeklyAveragePopularity = ("%.2f" % weekly_Average)
+    currency.threeDayAveragePopularity = ("%.2f" % threeDay_Average)
+    currency.lastDayPopularity = lastDay[0]
 
     # Sometimes google trends returns 0 if something goes wrong. We definitely don't want to divide by 0
     if (weekly_Average != 0):

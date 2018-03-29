@@ -13,7 +13,6 @@ for currency in currencyList:
 
 # Creating JSON based on the list of currencies
 for currency in currencyList:
-    currency.position = currencyList.index(currency)
     def obj_dict(obj):
         return obj.__dict__
 json_string = json.dumps(currencyList, default=obj_dict)

@@ -6,9 +6,6 @@ class CryptoCurrency(object):
         self.name = name
         self.price = 0;
         self.percentChange = 0
-        self.monthlyAverage = 0;
-        self.weeklyAverage = 0;
-        self.threeDayAverage = 0;
         # This is an ambitious field in case I want to update different currencies at different intervals
         self.lastUpdated = 0;
 

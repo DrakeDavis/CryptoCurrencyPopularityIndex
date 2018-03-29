@@ -22,8 +22,13 @@ def retrieveCurrencies():
     for item in jsonData:
         name = item.get("name")
         price = item.get("price_usd")
+        symbol = item.get("symbol")
+        monetaryDayChange = item.get("percent_change_24h")
+
         currency = CryptoCurrencyModel.CryptoCurrency(name)
         currency.price = ('$' + price)
+        currency.symbol = symbol
+        currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
 
     # This loops over the currency list and makes calls to Google Trends for each.
