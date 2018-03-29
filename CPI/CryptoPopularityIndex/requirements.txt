@@ -1,4 +1,1 @@
-Flask
-Flask-Cache
 pytrends
-gunicorn
