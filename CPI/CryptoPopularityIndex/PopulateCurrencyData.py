@@ -1,6 +1,6 @@
 import CoinmarketcapApiRetriever
 import boto3
-import json, os
+import json, os, datetime, logging
 
 
 # Retrieve the data (This starts the process of calling Coinmarketcap and Google APIs)
@@ -34,3 +34,7 @@ s3_client = boto3.client('s3',
 
 # Upload the file to S3. Making it public so anyone can use it.
 s3_client.upload_file('data.json', 'cryptopopindex', 'latestData.json', ExtraArgs={'ACL':'public-read'})
+logging.info("Uploaded .json info to AWS S3 bucket.")
+
+# Ugly print statement because my logging statements aren't showing up in Heroku logs  :(
+print("Finished retrieving trends at: ", datetime.datetime.now())

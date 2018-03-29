@@ -1,4 +1,4 @@
-import json, requests, operator, boto3
+import requests, operator, logging
 from time import sleep
 import GoogleTrendsRetriever, CryptoCurrencyModel
 
@@ -13,6 +13,7 @@ def retrieveCurrencies():
     # Calling out and getting the returned JSON data
     response = requests.get(url)
     jsonData = response.json()
+    logging.info("Calling API of Coinmarketcap.")
 
     # Initializing the list of currencies
     currencyList = list()
@@ -27,9 +28,9 @@ def retrieveCurrencies():
 
     # This loops over the currency list and makes calls to Google Trends for each.
     # Note that there is a sleep(2) here - this is because I don't want to DOS google by spamming requests
+    logging.info("Calling out to Google Trends.")
     for currency in currencyList:
         currency = GoogleTrendsRetriever.findTrend(currency)
-        print (currencyList.index(currency), '% complete')
         sleep(2)  # Time in seconds.
 
     # Sort the list by the "percentChange" attribute (the recent change in it's popularity)
