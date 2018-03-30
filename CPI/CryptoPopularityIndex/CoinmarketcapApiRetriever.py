@@ -23,11 +23,13 @@ def retrieveCurrencies():
         name = item.get("name")
         price = item.get("price_usd")
         symbol = item.get("symbol")
+        currencyId = item.get("id")
         monetaryDayChange = item.get("percent_change_24h")
 
         currency = CryptoCurrencyModel.CryptoCurrency(name)
         currency.price = (price)
         currency.symbol = symbol
+        currency.id = currencyId
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
 
