@@ -20,10 +20,11 @@ def retrieveCurrencies():
 
     # Creating a model object for a Cryptocurrency
     class CryptoCurrencyModel():
-        def __init__(self, name, price, symbol):
+        def __init__(self, name, price, symbol, id):
             self.name = name
             self.price = price
             self.symbol = symbol
+            self.id = id
             # Initializing this guy to 0, he'll be set later
             self.percentChange = 0
 
@@ -32,9 +33,10 @@ def retrieveCurrencies():
         name = item.get("name")
         price = item.get("price_usd")
         symbol = item.get("symbol")
+        id = item.get("id")
         monetaryDayChange = item.get("percent_change_24h")
 
-        currency = CryptoCurrencyModel(name, price, symbol)
+        currency = CryptoCurrencyModel(name, price, symbol, id)
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
 
