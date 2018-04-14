@@ -1,8 +1,8 @@
-The Cryptocurrency Popularity Index
+<h2>The Cryptocurrency Popularity Index</h2>
 
 <b>What is this?</b>
 
-This program uses Google Trends to see which cryptocurriences are becoming more popular. 
+This program uses Google Trends to see which cryptocurriences are trending in popularity.
 
 <b>How does it work?</b>
 
