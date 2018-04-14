@@ -1,5 +1,5 @@
 from pytrends.request import TrendReq
-import datetime
+import time
 pytrends = TrendReq(hl='en-US', tz=360)
 
 
@@ -50,6 +50,6 @@ def findTrend(argCurrency):
 
     # Populate the currency object with relevant data
     currency.percentChange = float("%.2f" % (increaseBetween3dAnd7d *100))
-    currency.lastUpdated = str(datetime.datetime.now())
+    currency.lastUpdated = str(int(time.time()))
 
     return currency
