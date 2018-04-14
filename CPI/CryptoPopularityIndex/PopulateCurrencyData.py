@@ -10,11 +10,6 @@ currencyList = CoinmarketcapApiRetriever.retrieveCurrencies()
 for currency in currencyList:
     def obj_dict(obj):
         return obj.__dict__
-
-# Creating JSON based on the list of currencies
-for currency in currencyList:
-    def obj_dict(obj):
-        return obj.__dict__
 json_string = json.dumps(currencyList, default=obj_dict)
 json_list = json.loads(json_string)
 

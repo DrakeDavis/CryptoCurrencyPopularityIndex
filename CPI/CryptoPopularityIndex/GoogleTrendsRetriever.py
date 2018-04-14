@@ -44,12 +44,12 @@ def findTrend(argCurrency):
 
     # Sometimes google trends returns 0 if something goes wrong. We definitely don't want to divide by 0
     if (weekly_Average != 0):
-        increaseBetween3dAnd7d = threeDay_Average / weekly_Average
+        increaseBetween3dAnd30d = threeDay_Average / monthly_Average
     else:
-        increaseBetween3dAnd7d = 0
+        increaseBetween3dAnd30d = 0
 
     # Populate the currency object with relevant data
-    currency.percentChange = float("%.2f" % (increaseBetween3dAnd7d *100))
+    currency.percentChange = float("%.2f" % (increaseBetween3dAnd30d *100))
     currency.lastUpdated = str(int(time.time()))
 
     return currency
