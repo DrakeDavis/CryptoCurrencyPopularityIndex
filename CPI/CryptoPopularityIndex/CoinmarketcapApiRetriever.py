@@ -1,6 +1,6 @@
 import requests, operator, logging
 from time import sleep
-import GoogleTrendsRetriever, CryptoCurrencyModel
+import GoogleTrendsRetriever
 
 
 # This function calls out to the API of Coinmarketcap.com and gets the top 100 coins as
@@ -18,6 +18,15 @@ def retrieveCurrencies():
     # Initializing the list of currencies
     currencyList = list()
 
+    # Creating a model object for a Cryptocurrency
+    class CryptoCurrencyModel():
+        def __init__(self, name, price, symbol):
+            self.name = name
+            self.price = price
+            self.symbol = symbol
+            # Initializing this guy to 0, he'll be set later
+            self.percentChange = 0
+
     # Parsing the JSON data and adding a currency object for each returned currency
     for item in jsonData:
         name = item.get("name")
@@ -25,9 +34,7 @@ def retrieveCurrencies():
         symbol = item.get("symbol")
         monetaryDayChange = item.get("percent_change_24h")
 
-        currency = CryptoCurrencyModel.CryptoCurrency(name)
-        currency.price = (price)
-        currency.symbol = symbol
+        currency = CryptoCurrencyModel(name, price, symbol)
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
 
