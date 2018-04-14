@@ -7,7 +7,7 @@ import GoogleTrendsRetriever, CryptoCurrencyModel
 # determined by their respective market caps
 def retrieveCurrencies():
 
-    # The URL of the API
+    # The URL of the API for Coinmarketcap
     url = 'https://api.coinmarketcap.com/v1/ticker/'
 
     # Calling out and getting the returned JSON data
@@ -26,7 +26,7 @@ def retrieveCurrencies():
         monetaryDayChange = item.get("percent_change_24h")
 
         currency = CryptoCurrencyModel.CryptoCurrency(name)
-        currency.price = ('$' + price)
+        currency.price = (price)
         currency.symbol = symbol
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
