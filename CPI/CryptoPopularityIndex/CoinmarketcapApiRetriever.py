@@ -37,6 +37,8 @@ def retrieveCurrencies():
         monetaryDayChange = item.get("percent_change_24h")
 
         currency = CryptoCurrencyModel(name, price, symbol, id)
+        currency.price = (price)
+        currency.symbol = symbol
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
 
