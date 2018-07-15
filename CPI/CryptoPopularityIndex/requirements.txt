@@ -1,2 +1,2 @@
-pytrends
+pytrends>=4.4.0
 boto3
