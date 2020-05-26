@@ -22,7 +22,7 @@ def findTrend(argCurrency):
 
     # Try to get a list of daily popularity over the last month
     try:
-        monthlyList = dataFrame.ix[:, 0].tolist()
+        monthlyList = dataFrame.iloc[:, 0].tolist()
     except:
         return currency
 
