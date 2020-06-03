@@ -54,7 +54,7 @@ def retrieveCurrencies():
         name = item.get("name")
         price = item['quote']['USD'].get("price")
         symbol = item.get("symbol")
-        id = item.get("id")
+        id = item.get("slug")
         monetaryDayChange = item['quote']['USD'].get("percent_change_24h")
 
         currency = CryptoCurrencyModel(name, price, symbol, id)
