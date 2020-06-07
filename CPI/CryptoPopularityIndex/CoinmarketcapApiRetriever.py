@@ -1,5 +1,7 @@
-import requests, operator, logging
+import requests, operator, logging, json, os
+from requests import Session
 from time import sleep
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import GoogleTrendsRetriever
 
 
@@ -10,10 +12,29 @@ def retrieveCurrencies():
     # The URL of the API for Coinmarketcap
     url = 'https://api.coinmarketcap.com/v1/ticker/'
 
+    # My API key is stored on the server running this
+    API_KEY = os.environ['COINMARKETCAP_API_KEY']
+
+    # Params and headers for calling the coinmarketcap API
+    url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+    parameters = {
+        'start': '1',
+        'limit': '100',
+        'convert': 'USD'
+    }
+    headers = {
+        'Accepts': 'application/json',
+        'X-CMC_PRO_API_KEY': API_KEY,
+    }
+    session = Session()
+    session.headers.update(headers)
+
     # Calling out and getting the returned JSON data
-    response = requests.get(url)
-    jsonData = response.json()
-    logging.info("Calling API of Coinmarketcap.")
+    try:
+        response = session.get(url, params=parameters)
+        jsonData = response.json()
+    except (ConnectionError, Timeout, TooManyRedirects) as e:
+        logging.error('Error caught during CoinMarketCap API call: ' + e)
 
     # Initializing the list of currencies
     currencyList = list()
@@ -29,15 +50,15 @@ def retrieveCurrencies():
             self.percentChange = 0
 
     # Parsing the JSON data and adding a currency object for each returned currency
-    for item in jsonData:
+    for item in jsonData['data']:
         name = item.get("name")
-        price = item.get("price_usd")
+        price = item['quote']['USD'].get("price")
         symbol = item.get("symbol")
-        id = item.get("id")
-        monetaryDayChange = item.get("percent_change_24h")
+        id = item.get("slug")
+        monetaryDayChange = item['quote']['USD'].get("percent_change_24h")
 
         currency = CryptoCurrencyModel(name, price, symbol, id)
-        currency.price = (price)
+        currency.price = price
         currency.symbol = symbol
         currency.dailyMonetaryChange = monetaryDayChange
         currencyList.append(currency)
