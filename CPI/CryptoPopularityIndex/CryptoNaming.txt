@@ -1,0 +1,42 @@
+# The purpose of this file is to identify which cryptocurrencies have common names so that we can restrict our Google
+# Trends search to just Cryptocurrency.
+# Many Cryptocurrencies have common names. (Such as Dash, Tether, Stellar, etc.) If this is the case, this file will
+# contain them.
+Tether
+EOS
+Stellar
+Chainlink
+TRON
+Neo
+Dash
+Maker
+IOTA
+Cosmos
+NEM
+Ontology
+OKB
+THETA
+ICON
+Lisk
+Augur
+Nano
+Hyperion
+Waves
+Holo
+Aave
+Status
+Komodo
+WAX
+Verge
+Terra
+MCO
+DIvi
+Energi
+Hive
+Ren
+BitTorrent
+Horizon
+SOLVE
+Celsius
+Golem
+HUSD
